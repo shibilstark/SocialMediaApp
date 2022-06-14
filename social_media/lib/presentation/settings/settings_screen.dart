@@ -1,0 +1,17 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:hive_flutter/adapters.dart';
+import 'package:social_media/presentation/chat/chat_screen.dart';
+import 'package:social_media/presentation/common/constants/const.dart';
+import 'package:social_media/presentation/common/widgets/field_texture.dart';
+import 'package:social_media/presentation/common/widgets/gap.dart';
+import 'package:social_media/presentation/common/widgets/logo_texture.dart';
+import 'package:social_media/presentation/home/home_screen.dart';
+import 'package:social_media/presentation/new_post/new_post.dart';
+import 'package:social_media/presentation/post_screen/post_screen.dart';
+import 'package:social_media/presentation/reels/reels_screen.dart';
+import 'package:social_media/presentation/search/search_screen.dart';
+import 'package:social_media/presentation/sign_up/sign_up_screen.dart';
+import 'package:social_media/themes/colors.dart';
+import 'package:social_media/themes/styles.dart';
