@@ -7,6 +7,7 @@ import 'package:readmore/readmore.dart';
 import 'package:social_media/presentation/common/constants/const.dart';
 import 'package:social_media/presentation/common/widgets/gap.dart';
 import 'package:social_media/presentation/home/home_screen.dart';
+import 'package:social_media/presentation/settings/settings_screen.dart';
 import 'package:social_media/themes/colors.dart';
 import 'package:social_media/themes/styles.dart';
 
@@ -52,7 +53,10 @@ class ProfileAppBar extends StatelessWidget {
               size: 30.sm,
             )),
         IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (ctx) => SettingsScreen()));
+            },
             icon: Icon(
               Icons.settings,
               color: primaryBlue,

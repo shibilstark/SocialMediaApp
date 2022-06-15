@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:readmore/readmore.dart';
+import 'package:social_media/presentation/comment_screen/comment_screen.dart';
 import 'package:social_media/presentation/common/constants/const.dart';
 import 'package:social_media/presentation/common/widgets/gap.dart';
 import 'package:social_media/presentation/home/home_screen.dart';
@@ -138,7 +139,10 @@ class PostTexture extends StatelessWidget {
                           color: primaryBlue,
                         )),
                     IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => CommentScreen()));
+                        },
                         icon: Icon(
                           Icons.comment,
                           size: 30.sm,
