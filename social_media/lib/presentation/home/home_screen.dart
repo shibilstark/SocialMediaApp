@@ -19,23 +19,24 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(preferredSize: appBarHeight, child: MainAppBar()),
+      appBar:
+          PreferredSize(preferredSize: appBarHeight, child: const MainAppBar()),
       body: ValueListenableBuilder(
           valueListenable: _bottomNav,
           builder: (BuildContext context, int val, _) {
             return SafeArea(child: _screeens[_bottomNav.value]);
           }),
-      bottomNavigationBar: MyNavigationBar(),
+      bottomNavigationBar: const MyNavigationBar(),
     );
   }
 }
 
 final _screeens = [
-  PostScreen(),
-  ReelsScreen(),
-  NewPostScreen(),
-  SearchScreen(),
-  ChatScreen()
+  const PostScreen(),
+  const ReelsScreen(),
+  const NewPostScreen(),
+  const SearchScreen(),
+  const ChatScreen()
 ];
 
 class MainAppBar extends StatelessWidget {
@@ -44,6 +45,7 @@ class MainAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      // backgroundColor: secondaryBlue,
       elevation: 2,
       automaticallyImplyLeading: false,
       title: Text(
@@ -58,7 +60,7 @@ class MainAppBar extends StatelessWidget {
               child: IconButton(
                   onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(
-                        builder: (ctx) => NotificationScreen()));
+                        builder: (ctx) => const NotificationScreen()));
                   },
                   icon: Icon(
                     Icons.notifications,
@@ -81,8 +83,8 @@ class MainAppBar extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-            Navigator.of(context)
-                .push(MaterialPageRoute(builder: (ctx) => ProfileScreen()));
+            Navigator.of(context).push(
+                MaterialPageRoute(builder: (ctx) => const ProfileScreen()));
           },
           child: CircleAvatar(
             backgroundColor: secondaryBlue,
@@ -118,11 +120,11 @@ class MyNavigationBar extends StatelessWidget {
               currentIndex: _bottomNav.value,
               onTap: (value) {
                 if (value == 1) {
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (ctx) => ReelsScreen()));
-                } else if (value == 2) {
                   Navigator.of(context).push(
-                      MaterialPageRoute(builder: (ctx) => NewPostScreen()));
+                      MaterialPageRoute(builder: (ctx) => const ReelsScreen()));
+                } else if (value == 2) {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (ctx) => const NewPostScreen()));
                 } else {
                   _bottomNav.value = value;
                   _bottomNav.notifyListeners();
@@ -130,7 +132,7 @@ class MyNavigationBar extends StatelessWidget {
               },
               selectedIconTheme: IconThemeData(color: primaryBlue, size: 21.sm),
               unselectedIconTheme: IconThemeData(
-                  color: primaryBlue.withOpacity(0.5), size: 19.sm),
+                  color: primaryBlue.withOpacity(0.65), size: 19.sm),
               selectedFontSize: 12.sm,
               iconSize: 26.sm,
               backgroundColor: whiteColor,

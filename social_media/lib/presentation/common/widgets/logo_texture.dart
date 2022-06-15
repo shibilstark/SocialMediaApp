@@ -34,3 +34,27 @@ class LogoTexture extends StatelessWidget {
     );
   }
 }
+
+class LogoTextureLight extends StatelessWidget {
+  const LogoTextureLight({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(children: [
+        Container(
+          height: 120.sm,
+          width: 120.sm,
+          decoration: BoxDecoration(
+              color: whiteColor.withOpacity(0.5),
+              borderRadius: BorderRadius.circular(10.sm)),
+        ),
+        gap(H: 10.sm),
+        Text(
+          "Application Name",
+          style: mainAppBarTitile.copyWith(color: whiteColor),
+        )
+      ]),
+    );
+  }
+}

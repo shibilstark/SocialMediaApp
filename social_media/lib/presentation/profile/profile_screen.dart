@@ -72,145 +72,17 @@ class ProfileBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      constraints: BoxConstraints(maxWidth: 800.sm),
-      child: Center(
+    return Center(
+      child: Container(
+        constraints: BoxConstraints(maxWidth: 800.sm),
         child: Padding(
           padding: constPadding,
           child: ListView(children: [
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    CircleAvatar(
-                      backgroundColor: secondaryBlue,
-                      radius: 50.sm,
-                      child: Icon(
-                        Icons.person,
-                        size: 80.sm,
-                        color: primaryBlue,
-                      ),
-                    ),
-                    gap(H: 20.sm),
-                    Text(
-                      "User Name",
-                      style: TextStyle(
-                        fontSize: 20.sm,
-                        fontWeight: FontWeight.w600,
-                        color: lightBlack,
-                      ),
-                    ),
-                    gap(H: 10.sm),
-                    Text(
-                      "User Emaiil",
-                      style: TextStyle(
-                        fontSize: 13.sm.sm.sm,
-                        overflow: TextOverflow.fade,
-                        fontWeight: FontWeight.w600,
-                        color: lightBlack,
-                      ),
-                    ),
-                  ],
-                ),
-                LimitedBox(
-                  child: Row(
-                    children: [
-                      Container(
-                        height: 70.sm,
-                        width: 70.sm,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Text(
-                              "Following",
-                              style: mainAppBarTitile.copyWith(
-                                  fontSize: 12.sm, color: primaryBlue),
-                            ),
-                            Text(
-                              "100",
-                              style: mainAppBarTitile.copyWith(
-                                  fontSize: 20.sm, color: primaryBlue),
-                            ),
-                          ],
-                        ),
-                      ),
-                      gap(W: 15.sm),
-                      Container(
-                        height: 70.sm,
-                        width: 70.sm,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Text(
-                              "Followers",
-                              style: mainAppBarTitile.copyWith(
-                                  fontSize: 12.sm, color: primaryBlue),
-                            ),
-                            Text(
-                              "100",
-                              style: mainAppBarTitile.copyWith(
-                                  fontSize: 20.sm, color: primaryBlue),
-                            ),
-                          ],
-                        ),
-                      ),
-                      gap(W: 15.sm),
-                      Container(
-                        height: 70.sm,
-                        width: 70.sm,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Posts",
-                              style: mainAppBarTitile.copyWith(
-                                  fontSize: 12.sm, color: primaryBlue),
-                            ),
-                            Text(
-                              "100",
-                              style: mainAppBarTitile.copyWith(
-                                  fontSize: 20.sm, color: primaryBlue),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
+            AccountInfoAndFollowers(),
             gap(H: 10.sm),
-            Text(
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec egestas posuere pretium. Nam volutpat dictum lorem in volutpat. ",
-              style: TextStyle(
-                  fontSize: 16.sm,
-                  fontWeight: FontWeight.w400,
-                  color: primaryBlue),
-            ),
+            ProfileStatusText(),
             gap(H: 20.sm),
-            Row(
-              children: [
-                Expanded(
-                    child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            primary: primaryBlue, onPrimary: whiteColor),
-                        onPressed: () {},
-                        child: Text("Follow"))),
-                gap(W: 20.sm),
-                Expanded(
-                    child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            primary: primaryBlue, onPrimary: whiteColor),
-                        onPressed: () {},
-                        child: Text("Message"))),
-              ],
-            ),
+            ProfileButtons(),
             gap(H: 20.sm),
             Text(
               "Posts",
@@ -226,6 +98,165 @@ class ProfileBody extends StatelessWidget {
           ]),
         ),
       ),
+    );
+  }
+}
+
+class ProfileButtons extends StatelessWidget {
+  const ProfileButtons({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Expanded(
+            child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    primary: primaryBlue, onPrimary: whiteColor),
+                onPressed: () {},
+                child: Text("Follow"))),
+        gap(W: 20.sm),
+        Expanded(
+            child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    primary: primaryBlue, onPrimary: whiteColor),
+                onPressed: () {},
+                child: Text("Message"))),
+      ],
+    );
+  }
+}
+
+class ProfileStatusText extends StatelessWidget {
+  const ProfileStatusText({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec egestas posuere pretium. Nam volutpat dictum lorem in volutpat. ",
+      style: TextStyle(
+          fontSize: 16.sm, fontWeight: FontWeight.w400, color: primaryBlue),
+    );
+  }
+}
+
+class AccountInfoAndFollowers extends StatelessWidget {
+  const AccountInfoAndFollowers({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            CircleAvatar(
+              backgroundColor: secondaryBlue,
+              radius: 50.sm,
+              child: Icon(
+                Icons.person,
+                size: 80.sm,
+                color: primaryBlue,
+              ),
+            ),
+            gap(H: 20.sm),
+            Text(
+              "User Name",
+              style: TextStyle(
+                fontSize: 20.sm,
+                fontWeight: FontWeight.w600,
+                color: lightBlack,
+              ),
+            ),
+            gap(H: 10.sm),
+            Text(
+              "User Emaiil",
+              style: TextStyle(
+                fontSize: 13.sm.sm.sm,
+                overflow: TextOverflow.fade,
+                fontWeight: FontWeight.w600,
+                color: lightBlack,
+              ),
+            ),
+          ],
+        ),
+        LimitedBox(
+          child: Row(
+            children: [
+              Container(
+                height: 70.sm,
+                width: 70.sm,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Text(
+                      "Following",
+                      style: mainAppBarTitile.copyWith(
+                          fontSize: 12.sm, color: primaryBlue),
+                    ),
+                    Text(
+                      "100",
+                      style: mainAppBarTitile.copyWith(
+                          fontSize: 20.sm, color: primaryBlue),
+                    ),
+                  ],
+                ),
+              ),
+              gap(W: 15.sm),
+              Container(
+                height: 70.sm,
+                width: 70.sm,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Text(
+                      "Followers",
+                      style: mainAppBarTitile.copyWith(
+                          fontSize: 12.sm, color: primaryBlue),
+                    ),
+                    Text(
+                      "100",
+                      style: mainAppBarTitile.copyWith(
+                          fontSize: 20.sm, color: primaryBlue),
+                    ),
+                  ],
+                ),
+              ),
+              gap(W: 15.sm),
+              Container(
+                height: 70.sm,
+                width: 70.sm,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Posts",
+                      style: mainAppBarTitile.copyWith(
+                          fontSize: 12.sm, color: primaryBlue),
+                    ),
+                    Text(
+                      "100",
+                      style: mainAppBarTitile.copyWith(
+                          fontSize: 20.sm, color: primaryBlue),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }

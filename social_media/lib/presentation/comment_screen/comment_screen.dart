@@ -10,6 +10,8 @@ import 'package:social_media/presentation/common/widgets/dummy_profile.dart';
 import 'package:social_media/presentation/common/widgets/gap.dart';
 import 'package:social_media/presentation/home/home_screen.dart';
 import 'package:social_media/presentation/inner_chat_screen/inner_chat_screen.dart';
+import 'package:social_media/presentation/post_screen/post_screen.dart';
+import 'package:social_media/presentation/search/search_screen.dart';
 import 'package:social_media/themes/colors.dart';
 
 final _dropItems = [
@@ -48,9 +50,46 @@ class CommentBody extends StatelessWidget {
         child: Column(
           children: [
             CommentPostView(),
+            Expanded(child: Container()),
+            CommentTexture()
           ],
         ),
       )),
+    );
+  }
+}
+
+TextEditingController _searchController = TextEditingController();
+
+class CommentTexture extends StatelessWidget {
+  const CommentTexture({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Expanded(
+          child: CupertinoTextField(
+            controller: _searchController,
+            padding: EdgeInsets.symmetric(vertical: 10.sm, horizontal: 10.sm),
+            cursorColor: primaryBlue,
+            style: TextStyle(color: lightBlack, fontSize: 16.sm),
+            decoration: BoxDecoration(
+                color: softBg, borderRadius: BorderRadius.circular(4.sm)),
+          ),
+        ),
+        TextButton(
+            onPressed: () {},
+            child: Text(
+              "Post",
+              style: TextStyle(
+                  color: primaryBlue,
+                  fontSize: 15.sm,
+                  fontWeight: FontWeight.w600),
+            ))
+      ],
     );
   }
 }
@@ -63,6 +102,7 @@ class CommentPostView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ExpandablePanel(
+      theme: ExpandableThemeData(sizeCurve: Curves.ease),
       header: Row(
         children: [
           LimitedBox(
@@ -102,24 +142,10 @@ class CommentPostView extends StatelessWidget {
             ],
           )),
           Spacer(),
-          // IconButton(
-          //     onPressed: () {
-
-          //     },
-          //     icon: Icon(
-          //       Icons.more_vert,
-          //       color: lightBlack,
-          //       size: 20.sm,
-          //     ))
           DropdownButtonHideUnderline(
             child: DropdownButton<String>(
               items: _dropItems.map(_buildMenuItem).toList(),
-              onChanged: (value) {
-                // value == "Edit"
-                //     ? Navigator.of(context).pop()
-                //     : Navigator.of(context).push(MaterialPageRoute(
-                //         builder: (ctx) => TestScreen()));
-              },
+              onChanged: (value) {},
               icon: Icon(
                 Icons.more_vert,
                 size: 20.sm,
@@ -131,7 +157,7 @@ class CommentPostView extends StatelessWidget {
       ),
       collapsed: Container(
         child: ReadMoreText(
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec egestas posuere pretium. Nam volutpat dictum lorem in volutpat. Aenean convallis ipsum sed sagittis bibendum. Sed ut bibendum velit, a consectetur est. Suspendisse feugiat nulla in felis mollis dignissim et id lectus. Nullam nec massa orci. Curabitur odio tellus, tempus ut imperdiet in, ullamcorper nec nibh. Praesent nisi nunc",
+          dummyLongText,
           trimMode: TrimMode.Line,
           trimLines: 3,
           trimCollapsedText: 'Read More',
@@ -154,7 +180,7 @@ class CommentPostView extends StatelessWidget {
         child: Column(
           children: [
             ReadMoreText(
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec egestas posuere pretium. Nam volutpat dictum lorem in volutpat. Aenean convallis ipsum sed sagittis bibendum. Sed ut bibendum velit, a consectetur est. Suspendisse feugiat nulla in felis mollis dignissim et id lectus. Nullam nec massa orci. Curabitur odio tellus, tempus ut imperdiet in, ullamcorper nec nibh. Praesent nisi nunc",
+              dummyLongText,
               trimMode: TrimMode.Line,
               trimLines: 3,
               trimCollapsedText: 'Read More',

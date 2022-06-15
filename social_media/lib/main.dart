@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
                 appBarTheme: AppBarTheme(
                     backgroundColor: whiteColor, foregroundColor: smoothBlack)),
             debugShowCheckedModeBanner: false,
-            home: const LoginScreen(),
+            home: const HomeScreen(),
           );
         });
   }

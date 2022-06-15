@@ -29,16 +29,18 @@ class SearchBody extends StatelessWidget {
       constraints: BoxConstraints(maxWidth: 900.sm),
       child: Padding(
         padding: constPadding,
-        child: Column(
-          children: [
-            SearchTexture(),
-            Expanded(
-                child: ListView.separated(
-              itemBuilder: (context, index) => SearchTile(),
-              separatorBuilder: (context, index) => gap(H: 5.sm),
-              itemCount: 10,
-            ))
-          ],
+        child: Center(
+          child: Column(
+            children: [
+              SearchTexture(),
+              Expanded(
+                  child: ListView.separated(
+                itemBuilder: (context, index) => SearchTile(),
+                separatorBuilder: (context, index) => gap(H: 5.sm),
+                itemCount: 10,
+              ))
+            ],
+          ),
         ),
       ),
     );
@@ -51,21 +53,6 @@ class SearchTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      //  Text(
-      //                   "User Name",
-      //                   style: TextStyle(
-      //                       color: lightBlack,
-      //                       fontSize: 18.sm,
-      //                       fontWeight: FontWeight.w500),
-      //                 ),
-      // Text(
-      //   "Follow",
-      //   style: TextStyle(
-      //       color: primaryBlue,
-      //       fontSize: 13.sm,
-      //       fontWeight: FontWeight.bold),
-      // )
-
       leading: DummyProfile(),
       title: Text(
         "User Name",

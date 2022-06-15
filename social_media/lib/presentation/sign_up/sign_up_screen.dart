@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hive_flutter/adapters.dart';
@@ -22,10 +23,32 @@ class SignUpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // extendBody: true,
       extendBodyBehindAppBar: true,
+
       appBar: PreferredSize(
-          child: CommonAppBar(title: "Sign Up"), preferredSize: appBarHeight),
+          child: CustomSignUpAbbBar(title: "Sign Up"),
+          preferredSize: appBarHeight),
       body: SafeArea(child: SignUpBody()),
+    );
+  }
+}
+
+class CustomSignUpAbbBar extends StatelessWidget {
+  final String title;
+  const CustomSignUpAbbBar({Key? key, required this.title}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+      foregroundColor: whiteColor,
+      elevation: 0,
+      backgroundColor: primaryBlue,
+      titleSpacing: -5.sm,
+      title: Text(
+        title,
+        style: mainAppBarTitile.copyWith(fontSize: 22.sm, color: whiteColor),
+      ),
     );
   }
 }
@@ -37,16 +60,16 @@ class SignUpBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
-        gradient: LinearGradient(
-            colors: [primaryBlue, secondaryBlue],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            stops: [
-              0.0,
-              1.0,
-            ],
-            tileMode: TileMode.clamp),
-      ),
+          // gradient: LinearGradient(
+          //     colors: [primaryBlue, secondaryBlue],
+          //     begin: Alignment.topLeft,
+          //     end: Alignment.bottomRight,
+          //     stops: [
+          //       0.0,
+          //       1.0,
+          //     ],
+          //     tileMode: TileMode.clamp),
+          color: secondaryBlue),
       child: Center(
         child: Container(
           constraints: BoxConstraints(maxWidth: 800.sm),

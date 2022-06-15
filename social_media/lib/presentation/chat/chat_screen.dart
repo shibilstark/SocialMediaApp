@@ -32,18 +32,20 @@ class ChatBody extends StatelessWidget {
       child: Center(
           child: Padding(
         padding: constPadding,
-        child: Column(
-          children: [
-            _SearchTexture(),
-            Expanded(
-                child: ListView.separated(
-              itemBuilder: (context, index) => ChatTile(),
-              separatorBuilder: (context, index) => Divider(
-                color: secondaryBlue,
-              ),
-              itemCount: 20,
-            ))
-          ],
+        child: Center(
+          child: Column(
+            children: [
+              _SearchTexture(),
+              Expanded(
+                  child: ListView.separated(
+                itemBuilder: (context, index) => ChatTile(),
+                separatorBuilder: (context, index) => Divider(
+                  color: secondaryBlue,
+                ),
+                itemCount: 20,
+              ))
+            ],
+          ),
         ),
       )),
     );

@@ -35,13 +35,15 @@ class ChatsBody extends StatelessWidget {
       child: Center(
           child: Padding(
         padding: constPadding,
-        child: Column(
-          children: [
-            Expanded(
-              child: ListView(),
-            ),
-            ChatTextField()
-          ],
+        child: Center(
+          child: Column(
+            children: [
+              Expanded(
+                child: ListView(),
+              ),
+              ChatTextField()
+            ],
+          ),
         ),
       )),
     );

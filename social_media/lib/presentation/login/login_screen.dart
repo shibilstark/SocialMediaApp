@@ -34,9 +34,12 @@ class LoginBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         gradient: LinearGradient(
-            colors: [primaryBlue, secondaryBlue],
+            colors: [
+              primaryBlue,
+              primaryBlue.withOpacity(0.8),
+            ],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             stops: [
@@ -53,7 +56,7 @@ class LoginBody extends StatelessWidget {
             child: Column(
               children: [
                 gap(H: 20.sm),
-                LogoTexture(),
+                LogoTextureLight(),
                 gap(H: 50.sm),
                 LoginContainer()
               ],
