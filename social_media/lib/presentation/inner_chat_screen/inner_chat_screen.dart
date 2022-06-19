@@ -1,11 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:social_media/presentation/common/constants/const.dart';
 import 'package:social_media/presentation/common/widgets/dummy_profile.dart';
 import 'package:social_media/presentation/common/widgets/gap.dart';
-import 'package:social_media/presentation/home/home_screen.dart';
 import 'package:social_media/themes/colors.dart';
 import 'package:social_media/themes/styles.dart';
 
@@ -20,7 +18,7 @@ class InnerChatScreen extends StatelessWidget {
         child: InnerChatAppBar(),
         preferredSize: appBarHeight,
       ),
-      body: ChatsBody(),
+      body: Center(child: ChatsBody()),
     );
   }
 }
@@ -59,7 +57,8 @@ class InnerChatAppBar extends StatelessWidget {
       titleSpacing: -5.sm,
       title: Text(
         "Messenger Name",
-        style: mainAppBarTitile.copyWith(fontSize: 22.sm),
+        style:
+            Theme.of(context).textTheme.titleLarge!.copyWith(fontSize: 22.sm),
       ),
       actions: [DummyProfile(), gap(W: 15.sm)],
     );
@@ -80,7 +79,10 @@ class ChatTextField extends StatelessWidget {
             // controller: _searchController,
             padding: EdgeInsets.symmetric(vertical: 10.sm, horizontal: 10.sm),
             cursorColor: primaryBlue,
-            style: TextStyle(color: lightBlack, fontSize: 16.sm),
+            style: Theme.of(context)
+                .textTheme
+                .bodySmall!
+                .copyWith(fontSize: 16.sm),
             decoration: BoxDecoration(
                 color: whiteColor, borderRadius: BorderRadius.circular(4.sm)),
           ),

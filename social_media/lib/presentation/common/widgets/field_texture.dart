@@ -29,7 +29,7 @@ class FieldTexture extends StatelessWidget {
           controller: controller,
           padding: EdgeInsets.symmetric(vertical: 10.sm, horizontal: 10.sm),
           cursorColor: primaryBlue,
-          style: TextStyle(color: lightBlack, fontSize: 16.sm),
+          style: Theme.of(context).textTheme.bodySmall,
           decoration: BoxDecoration(
               color: softBg, borderRadius: BorderRadius.circular(4.sm)),
         ),

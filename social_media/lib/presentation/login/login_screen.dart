@@ -88,10 +88,7 @@ class LoginContainer extends StatelessWidget {
           children: [
             Text(
               "Log in to Your Account",
-              style: TextStyle(
-                  color: lightBlack,
-                  fontSize: 20.sm,
-                  fontWeight: FontWeight.w500),
+              style: Theme.of(context).textTheme.titleSmall,
             ),
             gap(H: 20.sm),
             FieldTexture(title: "Email", controller: _LoginEmailController),
@@ -101,12 +98,10 @@ class LoginContainer extends StatelessWidget {
             gap(H: 8),
             SizedBox(
               width: double.infinity.sm,
-              child: const Text(
+              child: Text(
                 "Forgot Password?",
-                style: TextStyle(
-                  color: primaryBlue,
-                  fontSize: 13,
-                ),
+                style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                    fontWeight: FontWeight.normal, color: primaryBlue),
                 textAlign: TextAlign.end,
               ),
             ),
@@ -141,17 +136,24 @@ class LoginContainer extends StatelessWidget {
                         text: TextSpan(children: [
                       TextSpan(
                           text: "Not a member?  ",
-                          style: TextStyle(color: lightBlack, fontSize: 13.sm)),
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodySmall!
+                              .copyWith(fontWeight: FontWeight.normal)),
                       TextSpan(
                           text: "Sign up",
-                          style: TextStyle(color: primaryBlue, fontSize: 13.sm))
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodySmall!
+                              .copyWith(
+                                  fontWeight: FontWeight.normal,
+                                  color: primaryBlue))
                     ])),
                   ),
                   gap(H: 40.sm),
                   Text(
                     "Terms & Conditions | Privacy Policy",
-                    style: TextStyle(
-                        color: primaryBlue.withOpacity(0.8), fontSize: 13.sm),
+                    style: Theme.of(context).textTheme.labelSmall,
                   )
                 ],
               ),

@@ -51,6 +51,8 @@ class NotificationTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+    final iconTheme = Theme.of(context).iconTheme;
     return Column(
       children: [
         Row(
@@ -59,10 +61,11 @@ class NotificationTile extends StatelessWidget {
               radius: 20.sm,
               backgroundColor: secondaryBlue,
               child: Center(
-                  child: Icon(
-                Icons.person,
-                color: primaryBlue,
-                size: 30.sm,
+                  child: IconTheme(
+                data: iconTheme.copyWith(size: 30),
+                child: Icon(
+                  Icons.person,
+                ),
               )),
             ),
             gap(W: 10.sm),
@@ -72,17 +75,13 @@ class NotificationTile extends StatelessWidget {
               children: [
                 Text(
                   "User Name",
-                  style: TextStyle(
-                      color: lightBlack,
-                      fontSize: 18.sm,
-                      fontWeight: FontWeight.w500),
+                  style: textTheme.bodySmall!.copyWith(
+                    fontSize: 18.sm,
+                  ),
                 ),
                 Text(
                   "Follow",
-                  style: TextStyle(
-                      color: primaryBlue,
-                      fontSize: 13.sm,
-                      fontWeight: FontWeight.bold),
+                  style: Theme.of(context).textTheme.bodyMedium,
                 )
               ],
             )
@@ -91,7 +90,7 @@ class NotificationTile extends StatelessWidget {
         gap(H: 10.sm),
         Text(
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eget urna ornare, varius ante eu, semper lacus. Aliquam sollicitudin mattis congue. In vitae consectetur sem, nec luctus lorem. Curabitur ut nisl in sapien tincidunt commodo. Nulla consequat leo id suscipit convallis. Mauris vel erat vitae massa mattis scelerisque at sit amet metus. Nullam risus elit",
-          style: TextStyle(color: lightBlack, fontSize: 14.sm, height: 1.4),
+          style: Theme.of(context).textTheme.bodySmall,
         )
       ],
     );

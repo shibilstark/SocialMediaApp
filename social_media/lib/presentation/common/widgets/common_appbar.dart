@@ -19,7 +19,8 @@ class CommonAppBar extends StatelessWidget {
 
       title: Text(
         title,
-        style: mainAppBarTitile.copyWith(fontSize: 22.sm),
+        style:
+            Theme.of(context).textTheme.titleLarge!.copyWith(fontSize: 22.sm),
       ),
     );
   }

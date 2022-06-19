@@ -30,17 +30,18 @@ class NewPostAppBar extends StatelessWidget {
       titleSpacing: -5.sm,
       title: Text(
         "Add New Post",
-        style: mainAppBarTitile.copyWith(fontSize: 22.sm),
+        style:
+            Theme.of(context).textTheme.titleLarge!.copyWith(fontSize: 25.sm),
       ),
       actions: [
         TextButton(
             onPressed: () {},
             child: Text(
               "Post",
-              style: TextStyle(
-                  color: primaryBlue,
-                  fontSize: 15.sm,
-                  fontWeight: FontWeight.w600),
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyMedium!
+                  .copyWith(fontSize: 19),
             ))
       ],
     );
@@ -169,11 +170,7 @@ class CommandTexture extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       title,
-      style: TextStyle(
-        fontSize: 15.sm,
-        fontWeight: FontWeight.w500,
-        color: lightBlack,
-      ),
+      style: Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 14),
     );
   }
 }

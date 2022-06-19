@@ -1,6 +1,9 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:social_media/application/theme_bloc/theme_bloc.dart';
 import 'package:social_media/presentation/chat/chat_screen.dart';
 import 'package:social_media/presentation/common/constants/const.dart';
 import 'package:social_media/presentation/common/widgets/gap.dart';
@@ -50,7 +53,7 @@ class MainAppBar extends StatelessWidget {
       automaticallyImplyLeading: false,
       title: Text(
         "Application Name",
-        style: mainAppBarTitile,
+        style: Theme.of(context).textTheme.titleLarge,
       ),
       actions: [
         Stack(
@@ -62,10 +65,11 @@ class MainAppBar extends StatelessWidget {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (ctx) => const NotificationScreen()));
                   },
-                  icon: Icon(
-                    Icons.notifications,
-                    color: primaryBlue,
-                    size: 25.sm,
+                  icon: IconTheme(
+                    data: Theme.of(context).iconTheme,
+                    child: Icon(
+                      Icons.notifications,
+                    ),
                   )),
             ),
             CircleAvatar(
@@ -73,10 +77,10 @@ class MainAppBar extends StatelessWidget {
               backgroundColor: secondaryBlue,
               child: Text(
                 "10+",
-                style: TextStyle(
-                    color: lightBlack,
-                    fontSize: 8.sm,
-                    fontWeight: FontWeight.bold),
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyMedium!
+                    .copyWith(fontSize: 8.sm),
               ),
             )
           ],
@@ -89,10 +93,11 @@ class MainAppBar extends StatelessWidget {
           child: CircleAvatar(
             backgroundColor: secondaryBlue,
             radius: 20.sm,
-            child: Icon(
-              Icons.person,
-              size: 25.sm,
-              color: primaryBlue,
+            child: IconTheme(
+              data: Theme.of(context).iconTheme,
+              child: Icon(
+                Icons.person,
+              ),
             ),
           ),
         ),
@@ -111,58 +116,64 @@ class MyNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ValueListenableBuilder(
-      valueListenable: _bottomNav,
-      builder: (BuildContext context, int index, _) {
-        return SizedBox(
-          height: 60.sm,
-          child: BottomNavigationBar(
-              currentIndex: _bottomNav.value,
-              onTap: (value) {
-                if (value == 1) {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (ctx) => const ReelsScreen()));
-                } else if (value == 2) {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (ctx) => const NewPostScreen()));
-                } else {
-                  _bottomNav.value = value;
-                  _bottomNav.notifyListeners();
-                }
-              },
-              selectedIconTheme: IconThemeData(color: primaryBlue, size: 21.sm),
-              unselectedIconTheme: IconThemeData(
-                  color: primaryBlue.withOpacity(0.65), size: 19.sm),
-              selectedFontSize: 12.sm,
-              iconSize: 26.sm,
-              backgroundColor: whiteColor,
-              showUnselectedLabels: false,
-              showSelectedLabels: false,
-              type: BottomNavigationBarType.fixed,
-              items: const [
-                BottomNavigationBarItem(
-                  icon: Icon(
-                    FontAwesomeIcons.house,
-                  ),
-                  label: "Home",
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(FontAwesomeIcons.film),
-                  label: "Cutz",
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.add_photo_alternate),
-                  label: "Add New Post",
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(FontAwesomeIcons.search),
-                  label: "Search",
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.forum),
-                  label: "Chats",
-                ),
-              ]),
+    return BlocBuilder<ThemeBloc, ThemeState>(
+      builder: (context, state) {
+        return ValueListenableBuilder(
+          valueListenable: _bottomNav,
+          builder: (BuildContext context, int index, _) {
+            return SizedBox(
+              height: 60.sm,
+              child: BottomNavigationBar(
+                  currentIndex: _bottomNav.value,
+                  onTap: (value) {
+                    if (value == 1) {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (ctx) => const ReelsScreen()));
+                    } else if (value == 2) {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (ctx) => const NewPostScreen()));
+                    } else {
+                      _bottomNav.value = value;
+                      _bottomNav.notifyListeners();
+                    }
+                  },
+                  selectedIconTheme:
+                      Theme.of(context).iconTheme.copyWith(size: 21),
+                  unselectedIconTheme: state.isDark
+                      ? Theme.of(context).iconTheme.copyWith(
+                          color: whiteColor.withOpacity(0.4), size: 19.sm)
+                      : Theme.of(context).iconTheme.copyWith(
+                          color: primaryBlue.withOpacity(0.65), size: 19.sm),
+                  backgroundColor: state.isDark ? dModeBlack : whiteColor,
+                  showUnselectedLabels: false,
+                  showSelectedLabels: false,
+                  type: BottomNavigationBarType.fixed,
+                  items: const [
+                    BottomNavigationBarItem(
+                      icon: Icon(
+                        FontAwesomeIcons.house,
+                      ),
+                      label: "Home",
+                    ),
+                    BottomNavigationBarItem(
+                      icon: Icon(FontAwesomeIcons.film),
+                      label: "Cutz",
+                    ),
+                    BottomNavigationBarItem(
+                      icon: Icon(Icons.add_photo_alternate),
+                      label: "Add New Post",
+                    ),
+                    BottomNavigationBarItem(
+                      icon: Icon(FontAwesomeIcons.search),
+                      label: "Search",
+                    ),
+                    BottomNavigationBarItem(
+                      icon: Icon(Icons.forum),
+                      label: "Chats",
+                    ),
+                  ]),
+            );
+          },
         );
       },
     );

@@ -15,7 +15,7 @@ class ChatScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ChatBody(),
+      body: Center(child: ChatBody()),
     );
   }
 }
@@ -29,8 +29,7 @@ class ChatBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       constraints: BoxConstraints(maxWidth: 800.sm),
-      child: Center(
-          child: Padding(
+      child: Padding(
         padding: constPadding,
         child: Center(
           child: Column(
@@ -47,7 +46,7 @@ class ChatBody extends StatelessWidget {
             ],
           ),
         ),
-      )),
+      ),
     );
   }
 }
@@ -57,6 +56,7 @@ class ChatTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
     return ListTile(
       onTap: () {
         Navigator.of(context)
@@ -65,16 +65,15 @@ class ChatTile extends StatelessWidget {
       leading: DummyProfile(),
       title: Text(
         "User Name",
-        style: TextStyle(
-            color: lightBlack, fontSize: 18.sm, fontWeight: FontWeight.w500),
+        style: textTheme.bodySmall!
+            .copyWith(fontSize: 17.sm, fontWeight: FontWeight.w500),
       ),
       trailing: CircleAvatar(
         backgroundColor: secondaryBlue,
         radius: 15.sm,
         child: Text(
           "10",
-          style: TextStyle(
-              color: primaryBlue, fontSize: 10.sm, fontWeight: FontWeight.bold),
+          style: textTheme.bodyMedium!.copyWith(fontSize: 12.sm),
         ),
       ),
     );

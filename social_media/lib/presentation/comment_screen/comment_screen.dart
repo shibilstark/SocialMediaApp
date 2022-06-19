@@ -2,16 +2,11 @@ import 'package:expandable/expandable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:readmore/readmore.dart';
 import 'package:social_media/presentation/common/constants/const.dart';
 import 'package:social_media/presentation/common/widgets/common_appbar.dart';
-import 'package:social_media/presentation/common/widgets/dummy_profile.dart';
 import 'package:social_media/presentation/common/widgets/gap.dart';
-import 'package:social_media/presentation/home/home_screen.dart';
-import 'package:social_media/presentation/inner_chat_screen/inner_chat_screen.dart';
 import 'package:social_media/presentation/post_screen/post_screen.dart';
-import 'package:social_media/presentation/search/search_screen.dart';
 import 'package:social_media/themes/colors.dart';
 
 final _dropItems = [
@@ -32,7 +27,9 @@ class CommentScreen extends StatelessWidget {
     return Scaffold(
       appBar: PreferredSize(
           child: CommonAppBar(title: "Comments"), preferredSize: appBarHeight),
-      body: CommentBody(),
+      body: Center(
+        child: CommentBody(),
+      ),
     );
   }
 }
@@ -102,7 +99,9 @@ class CommentPostView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ExpandablePanel(
-      theme: ExpandableThemeData(sizeCurve: Curves.ease),
+      theme: ExpandableThemeData(
+        sizeCurve: Curves.ease,
+      ),
       header: Row(
         children: [
           LimitedBox(
@@ -112,10 +111,13 @@ class CommentPostView extends StatelessWidget {
                 radius: 20.sm,
                 backgroundColor: secondaryBlue,
                 child: Center(
-                    child: Icon(
-                  Icons.person,
-                  color: primaryBlue,
-                  size: 30.sm,
+                    child: IconTheme(
+                  data: Theme.of(context).iconTheme.copyWith(
+                        size: 30.sm,
+                      ),
+                  child: Icon(
+                    Icons.person,
+                  ),
                 )),
               ),
               gap(W: 10.sm),
@@ -125,17 +127,13 @@ class CommentPostView extends StatelessWidget {
                 children: [
                   Text(
                     "User Name",
-                    style: TextStyle(
-                        color: lightBlack,
-                        fontSize: 18.sm,
-                        fontWeight: FontWeight.w500),
+                    style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                          fontSize: 18.sm,
+                        ),
                   ),
                   Text(
                     "Follow",
-                    style: TextStyle(
-                        color: primaryBlue,
-                        fontSize: 13.sm,
-                        fontWeight: FontWeight.bold),
+                    style: Theme.of(context).textTheme.bodyMedium,
                   )
                 ],
               )
@@ -146,11 +144,13 @@ class CommentPostView extends StatelessWidget {
             child: DropdownButton<String>(
               items: _dropItems.map(_buildMenuItem).toList(),
               onChanged: (value) {},
-              icon: Icon(
-                Icons.more_vert,
-                size: 20.sm,
-                color: lightBlack,
-              ),
+              icon: IconTheme(
+                  data: Theme.of(context).iconTheme.copyWith(
+                        size: 20.sm,
+                      ),
+                  child: Icon(
+                    Icons.more_vert,
+                  )),
             ),
           )
         ],
@@ -162,18 +162,9 @@ class CommentPostView extends StatelessWidget {
           trimLines: 3,
           trimCollapsedText: 'Read More',
           trimExpandedText: 'Read Less',
-          lessStyle: TextStyle(
-            color: primaryBlue,
-            fontSize: 14.sm,
-          ),
-          moreStyle: TextStyle(
-            color: primaryBlue,
-            fontSize: 14.sm,
-          ),
-          style: TextStyle(
-            color: lightBlack,
-            fontSize: 14.sm,
-          ),
+          lessStyle: Theme.of(context).textTheme.bodyMedium,
+          moreStyle: Theme.of(context).textTheme.bodyMedium,
+          style: Theme.of(context).textTheme.bodySmall,
         ),
       ),
       expanded: Container(
@@ -185,18 +176,9 @@ class CommentPostView extends StatelessWidget {
               trimLines: 3,
               trimCollapsedText: 'Read More',
               trimExpandedText: 'Read Less',
-              lessStyle: TextStyle(
-                color: primaryBlue,
-                fontSize: 14.sm,
-              ),
-              moreStyle: TextStyle(
-                color: primaryBlue,
-                fontSize: 14.sm,
-              ),
-              style: TextStyle(
-                color: lightBlack,
-                fontSize: 14.sm,
-              ),
+              lessStyle: Theme.of(context).textTheme.bodyMedium,
+              moreStyle: Theme.of(context).textTheme.bodyMedium,
+              style: Theme.of(context).textTheme.bodySmall,
             ),
             gap(H: 10.sm),
             ClipRRect(
@@ -236,12 +218,17 @@ class CommentPostView extends StatelessWidget {
                 Spacer(),
                 Text(
                   "12/03/2030",
-                  style: TextStyle(
-                      color: primaryBlue,
-                      fontSize: 12.sm,
-                      fontWeight: FontWeight.bold),
+                  style: Theme.of(context).textTheme.bodyMedium,
                 )
               ],
+            ),
+            Container(
+              width: double.infinity,
+              child: Text(
+                "1000 Likes",
+                textAlign: TextAlign.start,
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
             ),
           ],
         ),

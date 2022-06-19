@@ -15,7 +15,7 @@ class SearchScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SearchBody(),
+      body: Center(child: SearchBody()),
     );
   }
 }
@@ -29,18 +29,16 @@ class SearchBody extends StatelessWidget {
       constraints: BoxConstraints(maxWidth: 900.sm),
       child: Padding(
         padding: constPadding,
-        child: Center(
-          child: Column(
-            children: [
-              SearchTexture(),
-              Expanded(
-                  child: ListView.separated(
-                itemBuilder: (context, index) => SearchTile(),
-                separatorBuilder: (context, index) => gap(H: 5.sm),
-                itemCount: 10,
-              ))
-            ],
-          ),
+        child: Column(
+          children: [
+            SearchTexture(),
+            Expanded(
+                child: ListView.separated(
+              itemBuilder: (context, index) => SearchTile(),
+              separatorBuilder: (context, index) => gap(H: 5.sm),
+              itemCount: 10,
+            ))
+          ],
         ),
       ),
     );
@@ -52,18 +50,17 @@ class SearchTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
     return ListTile(
       leading: DummyProfile(),
       title: Text(
         "User Name",
-        style: TextStyle(
-            color: lightBlack, fontSize: 18.sm, fontWeight: FontWeight.w500),
+        style: textTheme.bodySmall!
+            .copyWith(fontSize: 17.sm, fontWeight: FontWeight.w500),
       ),
-      trailing: Text(
-        "Follow",
-        style: TextStyle(
-            color: primaryBlue, fontSize: 13.sm, fontWeight: FontWeight.bold),
-      ),
+      trailing: Text("Follow",
+          style: textTheme.bodyMedium!
+              .copyWith(color: primaryBlue, fontSize: 14.sm)),
     );
   }
 }
@@ -77,6 +74,7 @@ class SearchTexture extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
     return Row(
       children: [
         Expanded(
@@ -84,7 +82,7 @@ class SearchTexture extends StatelessWidget {
             controller: _searchController,
             padding: EdgeInsets.symmetric(vertical: 10.sm, horizontal: 10.sm),
             cursorColor: primaryBlue,
-            style: TextStyle(color: lightBlack, fontSize: 16.sm),
+            style: textTheme.bodySmall!.copyWith(fontSize: 16.sm),
             decoration: BoxDecoration(
                 color: softBg, borderRadius: BorderRadius.circular(4.sm)),
           ),
@@ -93,10 +91,7 @@ class SearchTexture extends StatelessWidget {
             onPressed: () {},
             child: Text(
               "Search",
-              style: TextStyle(
-                  color: primaryBlue,
-                  fontSize: 15.sm,
-                  fontWeight: FontWeight.w600),
+              style: textTheme.bodyMedium!.copyWith(fontSize: 16.sm),
             ))
       ],
     );

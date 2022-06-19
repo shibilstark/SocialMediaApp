@@ -11,10 +11,14 @@ class DummyProfile extends StatelessWidget {
       radius: 20.sm,
       backgroundColor: secondaryBlue,
       child: Center(
-          child: Icon(
-        Icons.person,
-        color: primaryBlue,
-        size: 30.sm,
+          child: IconTheme(
+        data: Theme.of(context).iconTheme.copyWith(
+              size: 30.sm,
+            ),
+        child: Icon(
+          Icons.person,
+          color: primaryBlue,
+        ),
       )),
     );
   }

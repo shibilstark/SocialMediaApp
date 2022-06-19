@@ -15,10 +15,15 @@ class PostScreen extends StatelessWidget {
     return Scaffold(
       body: Padding(
         padding: constPadding,
-        child: ListView.separated(
-          itemBuilder: (context, index) => PostTexture(),
-          separatorBuilder: (context, index) => gap(H: 15.sm),
-          itemCount: 10,
+        child: Center(
+          child: Container(
+            constraints: BoxConstraints(maxWidth: 800.sm),
+            child: ListView.separated(
+              itemBuilder: (context, index) => PostTexture(),
+              separatorBuilder: (context, index) => gap(H: 15.sm),
+              itemCount: 10,
+            ),
+          ),
         ),
       ),
     );

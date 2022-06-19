@@ -48,11 +48,7 @@ class PostTag extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       "#tag",
-      style: TextStyle(
-        fontWeight: FontWeight.w600,
-        color: primaryBlue,
-        fontSize: 14.sm,
-      ),
+      style: Theme.of(context).textTheme.bodyMedium,
     );
   }
 }
@@ -70,18 +66,9 @@ class PostDiscription extends StatelessWidget {
       trimLines: 3,
       trimCollapsedText: 'Read More',
       trimExpandedText: 'Read Less',
-      lessStyle: TextStyle(
-        color: primaryBlue,
-        fontSize: 14.sm,
-      ),
-      moreStyle: TextStyle(
-        color: primaryBlue,
-        fontSize: 14.sm,
-      ),
-      style: TextStyle(
-        color: lightBlack,
-        fontSize: 14.sm,
-      ),
+      lessStyle: Theme.of(context).textTheme.bodyMedium,
+      moreStyle: Theme.of(context).textTheme.bodyMedium,
+      style: Theme.of(context).textTheme.bodySmall,
     );
   }
 }
@@ -106,20 +93,26 @@ class LikeAndCommentRow extends StatelessWidget {
                 children: [
                   IconButton(
                       onPressed: () {},
-                      icon: Icon(
-                        Icons.favorite_outline,
-                        size: 30.sm,
-                        color: primaryBlue,
+                      icon: IconTheme(
+                        data: Theme.of(context).iconTheme.copyWith(
+                              size: 30.sm,
+                            ),
+                        child: Icon(
+                          Icons.favorite_outline,
+                        ),
                       )),
                   IconButton(
                       onPressed: () {
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => CommentScreen()));
                       },
-                      icon: Icon(
-                        Icons.comment,
-                        size: 30.sm,
-                        color: primaryBlue,
+                      icon: IconTheme(
+                        data: Theme.of(context).iconTheme.copyWith(
+                              size: 30.sm,
+                            ),
+                        child: Icon(
+                          Icons.comment,
+                        ),
                       ))
                 ],
               ),
@@ -127,20 +120,13 @@ class LikeAndCommentRow extends StatelessWidget {
             Spacer(),
             Text(
               "12/03/2030",
-              style: TextStyle(
-                  color: primaryBlue,
-                  fontSize: 12.sm,
-                  fontWeight: FontWeight.bold),
+              style: Theme.of(context).textTheme.bodyMedium,
             )
           ],
         ),
         Text(
           "1000 Likes",
-          style: TextStyle(
-            color: primaryBlue,
-            fontSize: 14.sm,
-            fontWeight: FontWeight.w600,
-          ),
+          style: Theme.of(context).textTheme.bodyMedium,
         ),
         gap(H: 10.sm)
       ],
@@ -187,10 +173,13 @@ class UserInfoRow extends StatelessWidget {
               radius: 20.sm,
               backgroundColor: secondaryBlue,
               child: Center(
-                  child: Icon(
-                Icons.person,
-                color: primaryBlue,
-                size: 30.sm,
+                  child: IconTheme(
+                data: Theme.of(context).iconTheme.copyWith(
+                      size: 30.sm,
+                    ),
+                child: Icon(
+                  Icons.person,
+                ),
               )),
             ),
             gap(W: 10.sm),
@@ -200,17 +189,13 @@ class UserInfoRow extends StatelessWidget {
               children: [
                 Text(
                   "User Name",
-                  style: TextStyle(
-                      color: lightBlack,
-                      fontSize: 18.sm,
-                      fontWeight: FontWeight.w500),
+                  style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                        fontSize: 18.sm,
+                      ),
                 ),
                 Text(
                   "Follow",
-                  style: TextStyle(
-                      color: primaryBlue,
-                      fontSize: 13.sm,
-                      fontWeight: FontWeight.bold),
+                  style: Theme.of(context).textTheme.bodyMedium,
                 )
               ],
             )
@@ -221,10 +206,11 @@ class UserInfoRow extends StatelessWidget {
           child: DropdownButton<String>(
             items: _dropItems.map(_buildMenuItem).toList(),
             onChanged: (value) {},
-            icon: Icon(
-              Icons.more_vert,
-              size: 20.sm,
-              color: lightBlack,
+            icon: IconTheme(
+              data: Theme.of(context).iconTheme.copyWith(size: 18),
+              child: Icon(
+                Icons.more_vert,
+              ),
             ),
           ),
         )

@@ -1,19 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:hive_flutter/adapters.dart';
-import 'package:social_media/presentation/chat/chat_screen.dart';
 import 'package:social_media/presentation/common/constants/const.dart';
 import 'package:social_media/presentation/common/widgets/common_appbar.dart';
 import 'package:social_media/presentation/common/widgets/field_texture.dart';
 import 'package:social_media/presentation/common/widgets/gap.dart';
-import 'package:social_media/presentation/common/widgets/logo_texture.dart';
 import 'package:social_media/presentation/home/home_screen.dart';
-import 'package:social_media/presentation/new_post/new_post.dart';
-import 'package:social_media/presentation/post_screen/post_screen.dart';
-import 'package:social_media/presentation/reels/reels_screen.dart';
-import 'package:social_media/presentation/search/search_screen.dart';
 import 'package:social_media/themes/colors.dart';
 import 'package:social_media/themes/styles.dart';
 
@@ -27,31 +18,30 @@ class SignUpScreen extends StatelessWidget {
       extendBodyBehindAppBar: true,
 
       appBar: PreferredSize(
-          child: CustomSignUpAbbBar(title: "Sign Up"),
-          preferredSize: appBarHeight),
+          child: CommonAppBar(title: "Sign Up"), preferredSize: appBarHeight),
       body: SafeArea(child: SignUpBody()),
     );
   }
 }
 
-class CustomSignUpAbbBar extends StatelessWidget {
-  final String title;
-  const CustomSignUpAbbBar({Key? key, required this.title}) : super(key: key);
+// class CustomSignUpAbbBar extends StatelessWidget {
+//   final String title;
+//   const CustomSignUpAbbBar({Key? key, required this.title}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return AppBar(
-      foregroundColor: whiteColor,
-      elevation: 0,
-      backgroundColor: primaryBlue,
-      titleSpacing: -5.sm,
-      title: Text(
-        title,
-        style: mainAppBarTitile.copyWith(fontSize: 22.sm, color: whiteColor),
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return AppBar(
+//       foregroundColor: whiteColor,
+//       elevation: 0,
+//       backgroundColor: primaryBlue,
+//       titleSpacing: -5.sm,
+//       title: Text(
+//         title,
+//         style: mainAppBarTitile.copyWith(fontSize: 22.sm, color: whiteColor),
+//       ),
+//     );
+//   }
+// }
 
 class SignUpBody extends StatelessWidget {
   const SignUpBody({Key? key}) : super(key: key);
@@ -85,7 +75,7 @@ class SignUpBody extends StatelessWidget {
                       gap(H: 30.sm),
                       Text(
                         "Application Name",
-                        style: mainAppBarTitile,
+                        style: Theme.of(context).textTheme.titleLarge,
                       )
                     ],
                   ),
@@ -121,10 +111,7 @@ class LoginContainer extends StatelessWidget {
           children: [
             Text(
               "Create New Account",
-              style: TextStyle(
-                  color: lightBlack,
-                  fontSize: 20.sm,
-                  fontWeight: FontWeight.w500),
+              style: Theme.of(context).textTheme.titleSmall,
             ),
             gap(H: 20.sm),
             Row(
@@ -168,8 +155,10 @@ class LoginContainer extends StatelessWidget {
                     },
                     child: Text(
                       "Sign Up",
-                      style: mainAppBarTitile.copyWith(
-                          color: whiteColor, fontSize: 15),
+                      style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                            color: whiteColor,
+                            fontSize: 18.sm,
+                          ),
                     ),
                     color: primaryBlue,
                     padding: EdgeInsets.symmetric(horizontal: 60.sm),
@@ -200,10 +189,7 @@ class GenderWidgetSignUp extends StatelessWidget {
             children: [
               Text(
                 "Gender",
-                style: TextStyle(
-                    color: lightBlack,
-                    fontSize: 13.sm,
-                    fontWeight: FontWeight.w500),
+                style: Theme.of(context).textTheme.bodySmall,
               ),
               gap(H: 10.sm),
               Row(
@@ -227,10 +213,7 @@ class GenderWidgetSignUp extends StatelessWidget {
                         gap(W: 5.sm),
                         Text(
                           "Male",
-                          style: TextStyle(
-                              color: lightBlack,
-                              fontSize: 15.sm,
-                              fontWeight: FontWeight.w600),
+                          style: Theme.of(context).textTheme.bodySmall,
                         ),
                       ],
                     ),
@@ -255,10 +238,7 @@ class GenderWidgetSignUp extends StatelessWidget {
                         gap(W: 5.sm),
                         Text(
                           "Female",
-                          style: TextStyle(
-                              color: lightBlack,
-                              fontSize: 15.sm,
-                              fontWeight: FontWeight.w600),
+                          style: Theme.of(context).textTheme.bodySmall,
                         ),
                       ],
                     ),
@@ -296,9 +276,12 @@ class CheckBoxWidget extends StatelessWidget {
                 ),
               ),
               gap(W: 10.sm),
-              const Text(
+              Text(
                 "I Accept all Terms and Conditions & Privacy Policy",
-                style: TextStyle(fontSize: 12),
+                style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                      fontSize: 13.sm,
+                      fontWeight: FontWeight.normal,
+                    ),
               )
             ],
           );
