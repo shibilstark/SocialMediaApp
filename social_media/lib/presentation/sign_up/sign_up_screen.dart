@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:social_media/presentation/common/constants/const.dart';
@@ -24,42 +25,13 @@ class SignUpScreen extends StatelessWidget {
   }
 }
 
-// class CustomSignUpAbbBar extends StatelessWidget {
-//   final String title;
-//   const CustomSignUpAbbBar({Key? key, required this.title}) : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return AppBar(
-//       foregroundColor: whiteColor,
-//       elevation: 0,
-//       backgroundColor: primaryBlue,
-//       titleSpacing: -5.sm,
-//       title: Text(
-//         title,
-//         style: mainAppBarTitile.copyWith(fontSize: 22.sm, color: whiteColor),
-//       ),
-//     );
-//   }
-// }
-
 class SignUpBody extends StatelessWidget {
   const SignUpBody({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
-          // gradient: LinearGradient(
-          //     colors: [primaryBlue, secondaryBlue],
-          //     begin: Alignment.topLeft,
-          //     end: Alignment.bottomRight,
-          //     stops: [
-          //       0.0,
-          //       1.0,
-          //     ],
-          //     tileMode: TileMode.clamp),
-          color: secondaryBlue),
+      decoration: const BoxDecoration(color: secondaryBlue),
       child: Center(
         child: Container(
           constraints: BoxConstraints(maxWidth: 800.sm),
@@ -80,7 +52,7 @@ class SignUpBody extends StatelessWidget {
                     ],
                   ),
                   gap(H: 30.sm),
-                  LoginContainer(),
+                  SignUpContainer(),
                 ],
               ),
             ),
@@ -94,8 +66,8 @@ class SignUpBody extends StatelessWidget {
 TextEditingController _LoginEmailController = TextEditingController();
 TextEditingController _LoginPasswordController = TextEditingController();
 
-class LoginContainer extends StatelessWidget {
-  const LoginContainer({Key? key}) : super(key: key);
+class SignUpContainer extends StatelessWidget {
+  const SignUpContainer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -129,6 +101,9 @@ class LoginContainer extends StatelessWidget {
             ),
             gap(H: 20.sm),
             FieldTexture(title: "Email", controller: _LoginEmailController),
+            gap(H: 20.sm),
+            EmailVerifyTexture(
+                title: "Verification Code", controller: _LoginEmailController),
             gap(H: 20.sm),
             FieldTexture(
                 title: "Password", controller: _LoginPasswordController),
@@ -286,5 +261,60 @@ class CheckBoxWidget extends StatelessWidget {
             ],
           );
         });
+  }
+}
+
+class EmailVerifyTexture extends StatelessWidget {
+  final TextEditingController controller;
+  const EmailVerifyTexture({
+    Key? key,
+    required this.title,
+    required this.controller,
+  }) : super(key: key);
+
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          title,
+          style: TextFieldTitleStyle,
+        ),
+        gap(H: 5.sm),
+        Row(
+          children: [
+            Expanded(
+              child: CupertinoTextField(
+                controller: controller,
+                padding:
+                    EdgeInsets.symmetric(vertical: 10.sm, horizontal: 10.sm),
+                cursorColor: primaryBlue,
+                style: Theme.of(context).textTheme.bodySmall,
+                decoration: BoxDecoration(
+                    color: softBg, borderRadius: BorderRadius.circular(4.sm)),
+              ),
+            ),
+            gap(W: 5.sm),
+            Expanded(
+              child: SizedBox(
+                height: 35.sm,
+                child: TextButton(
+                    style: TextButton.styleFrom(
+                      backgroundColor: primaryBlue,
+                    ),
+                    onPressed: () {},
+                    child: Text(
+                      "Varify",
+                      style: TextStyle(color: whiteColor, fontSize: 13.sm),
+                    )),
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
   }
 }
